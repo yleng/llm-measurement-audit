@@ -15,7 +15,7 @@ This notebook uses `ppi_py` to combine judge scores with human ratings and estim
 | Education | **Choose a tutoring intervention** | Do students explain the concept better after receiving a new kind of feedback? | Students adopt technical vocabulary that the judge mistakes for understanding. | Correct reasoning in one independently scored answer per student. Compare learning outcomes before choosing the feedback approach. |
 | LLM evaluation | **Select between two models** | Does randomly routing an independent request between two prespecified models improve human-rated answer quality? | A judge may favor one model's style or verbosity over correctness. | Correctness and task completion under the same human rubric. Compare the estimated quality difference and its interval; assess cost and latency separately. |
 
-These are applications of the supported randomized design, not reported deployments. Each needs a defensible rubric and appropriate experimental design; the tool measures the stated text outcome, rather than downstream behavior automatically. The model-selection example randomizes independent requests between models; evaluating both models on the same prompts requires paired inference.
+These examples use the supported randomized design; they do not document deployments. Each needs a defensible rubric and an appropriate experiment. Measuring the stated text outcome does not automatically measure downstream behavior. The model-selection example randomizes independent requests between models; evaluating both models on the same prompts requires paired inference.
 
 ## See what changes after human review
 
@@ -23,7 +23,7 @@ These are applications of the supported randomized design, not reported deployme
 
 The example creates **zero human-reference treatment effect**, while the simulated judge adds eight points to the intervention group. PPI estimates **+0.46 points, with a conservative nominal 95% interval of −0.77 to +1.70**. The data do not resolve whether the human-reference outcome improves.
 
-Human-only analysis uses the same 800 ratings and also leaves the effect unresolved. PPI has a narrower interval in this draw. This is a synthetic worked calculation, not evidence of typical performance or annotation savings. [Full numerical output](example-result.json)
+Human-only analysis uses the same 800 ratings and also leaves the effect unresolved. PPI has a narrower interval in this draw. This synthetic example shows the calculation. It cannot establish typical performance or annotation savings. [Full numerical output](example-result.json)
 
 ## Run the notebook
 
@@ -53,7 +53,7 @@ It then subtracts the control estimate from the intervention estimate. Informati
 
 ## Bring your own experiment
 
-For each group, supply aligned human ratings and judge predictions for an IID labeled sample, plus predictions for a separate IID unlabeled sample from the same population and assignment design. Freeze the rubric and scoring rule. **Keep labeled observations out of `Yhat_unlabeled`.** A score can be corrected to a human reference only insofar as those human ratings measure the intended outcome.
+For each group, supply aligned human ratings and judge predictions for an IID labeled sample, plus predictions for a separate IID unlabeled sample from the same population and assignment design. Freeze the rubric and scoring rule. **Keep labeled observations out of `Yhat_unlabeled`.** The corrected estimate is meaningful for your question only if the human ratings measure the intended outcome.
 
 The notebook uses the existing `ppi_mean_pointestimate` and `ppi_mean_ci` APIs with fixed `lam=1`. Two 97.5% asymptotic arm intervals are combined with Bonferroni to form a conservative nominal 95% effect interval. This requires the component intervals' asymptotic validity; it is not an exact finite-sample guarantee. Clustering, repeated outcomes, nonuniform/adaptive labeling, and population shifts require a different analysis. The illustrative 800-label count is not a sample-size recommendation.
 

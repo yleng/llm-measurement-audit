@@ -8,7 +8,7 @@ For a code change, include a focused regression test and run:
 PYTHONPATH=src python3 -m unittest discover -s tests -q
 ```
 
-Explain any changes to the statistical target, score interpretation, exclusions or report schema. Synthetic tests establish software behavior; empirical usefulness requires separate evidence.
+Explain any changes to the statistical target, score interpretation, exclusions or report schema. These tests check software behavior. Evidence from actual use is needed to assess usefulness.
 
 ## README preview
 
@@ -18,7 +18,7 @@ Explain any changes to the statistical target, score interpretation, exclusions 
 python3 docs/scripts/render_readme_preview.py
 ```
 
-Rendering requires matplotlib in your documentation environment; it is not a package runtime dependency. The illustration must use computed results and retain its synthetic-data label. Keep the full generated report available next to the visual summary.
+Rendering requires matplotlib in your documentation environment; it is not a package runtime dependency. Use computed results in the illustration and keep the synthetic-data label. Keep the full generated report available next to the visual summary.
 
 `python3 docs/scripts/render_experiment_example.py` rebuilds the randomized-experiment CSV, report, summary, and article figures. See [reproduction details](../docs/experiment-example.md) for the fixed data-generating process and the human-only documentation baseline. The baseline is not an additional CLI output.
 

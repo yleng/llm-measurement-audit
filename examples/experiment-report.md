@@ -15,7 +15,7 @@ Asymptotic 95% normal interval for the human-reference effect: [-0.280374, 2.503
 
 The interval includes zero: these data do not resolve the direction of the human-reference difference.
 
-Interpret the difference under the stated human rubric. A higher score is an improvement only if that rubric defines higher values as better. Use the interval to judge whether the comparison resolves a practically meaningful difference.
+Read the estimate under the stated human rubric: higher scores mean improvement only if the rubric defines them that way. Use the interval to assess whether the data resolve a practically meaningful difference.
 
 ## Audit coverage
 

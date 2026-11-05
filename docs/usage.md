@@ -1,6 +1,6 @@
 # Randomized-experiment input, configuration, and API guide
 
-This guide covers the original randomized two-arm mode. For two checkpoints answering the same prompts, use the separate [paired comparison guide](paired.md). See the [README](../README.md) for both workflows, and the [method](method.md) for equations and assumptions.
+Use this guide for randomized two-arm experiments. For two checkpoints answering the same prompts, use the separate [paired comparison guide](paired.md). See the [README](../README.md) for both workflows, and the [method](method.md) for equations and assumptions.
 
 ## Supported design and target
 
@@ -52,7 +52,7 @@ Copy [examples/design.json](../examples/design.json). Every listed key is requir
 | `fold_seed` | Nonempty, predeclared string; required in both modes. |
 | `ridge` | Finite positive number; required in both modes, used for calibration. |
 
-Both modes require at least two audited labels per arm and two units per arm. These are arithmetic support checks, **not** adequacy recommendations. Cross-fitting additionally requires at least three audited training labels in every arm/fold and at least `folds` units per arm. IDs and the fold seed must be fixed independently of scores, labels, and audit selection. No missing-label imputation, probability inference, clipping, or fold repair occurs.
+Both modes require at least two audited labels per arm and two units per arm. These minimums let the calculation run; they do **not** establish that the sample is adequate. Cross-fitting additionally requires at least three audited training labels in every arm/fold and at least `folds` units per arm. IDs and the fold seed must be fixed independently of scores, labels, and audit selection. No missing-label imputation, probability inference, clipping, or fold repair occurs.
 
 ## CLI and reports
 
@@ -100,4 +100,4 @@ VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 TOKENIZERS_PARALLELISM=false \
 python -m unittest discover -s tests -v
 ```
 
-Tests cover hand-calculated estimates/variance, full-audit equivalence, unequal probabilities, strict held-out behavior, numerical failures, invalid inputs, and CLI outputs. These checks establish engineering behavior; empirical efficacy, confidence-interval coverage, saved human hours, and better organizational decisions require separate validation.
+Tests cover hand-calculated estimates/variance, full-audit equivalence, unequal probabilities, strict held-out behavior, numerical failures, invalid inputs, and CLI outputs. These tests check software behavior. Empirical efficacy, confidence-interval coverage, saved human hours, and better organizational decisions require separate validation.

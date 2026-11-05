@@ -1,6 +1,6 @@
 # Estimator, variance and scope
 
-The package implements existing generalized-difference estimators for two designs: randomized two-arm experiments and paired prompt comparisons. These are applications of established correction machinery.
+The package implements existing generalized-difference estimators for two designs: randomized two-arm experiments and paired prompt comparisons. Both use established methods for correcting measurement error.
 
 ## Randomized two-arm experiments
 
@@ -13,7 +13,7 @@ SE² = sample_variance(phi | A=1)/n_1 + sample_variance(phi | A=0)/n_0
 CI = tau_hat +/- NormalQuantile(1-alpha/2) * SE
 ```
 
-The implementation branches on R before accessing H, so missing labels never enter arithmetic. It neither clips H nor infers pi. For full audits phi=H exactly, yielding the human contrast and the usual two-arm sample-variance SE. AI-only intervals use S and target the score contrast rather than the human-reference contrast.
+The implementation branches on R before accessing H, so missing labels never enter arithmetic. It uses H without clipping and requires pi to be supplied. For full audits phi=H exactly, yielding the human contrast and the usual two-arm sample-variance SE. AI-only intervals use S and target the score contrast rather than the human-reference contrast.
 
 ## Why this variance belongs to this target
 
@@ -21,7 +21,7 @@ The target is E[H(1)]-E[H(0)] for an IID population under independent randomized
 
 Known random-assignment probability is recorded and validated. The estimator uses observed arm means (a ratio form), whose asymptotic influence is `A/e*(phi-mu_1) - (1-A)/(1-e)*(phi-mu_0)`; the reported arm-sample variance estimates its asymptotic variance. This is not a Horvitz–Thompson estimator for random assignment, and finite-sample unbiasedness under empty/random arm sizes is not claimed.
 
-This is **not** a conditional audit-variance estimator for a fixed set of realized responses. That target would need a separate design-based variance and a different interpretation. There is no fixed-population finite-sampling correction or exact randomization interval here.
+Conditional audit uncertainty for a fixed set of realized responses requires a separate design-based variance and a different interpretation. There is no fixed-population finite-sampling correction or exact randomization interval here.
 
 ## Paired prompt comparisons
 
@@ -56,7 +56,7 @@ See the [paired guide](paired.md) for the exact input schema and required assert
 
 At least three training audit labels are required in every arm/fold. Insufficient support fails the entire analysis; no same-fold fit, all-label fallback or score substitution occurs. At full auditing the correction still equals H regardless of fitted prediction.
 
-The same SE formula is asymptotically appropriate only with fixed fold count, suitable finite moments/positivity, and calibration converging in L2 to a stable finite-variance limit. Cross-fitting removes own-fold training leakage; it does **not** by itself prove these regularity conditions or provide finite-sample independence of the pseudo-outcomes. Different folds share training data. No exact finite-sample coverage or variance unbiasedness is claimed. A small minimum training count is a software support rule, not evidence of nuisance stability.
+The same SE formula is asymptotically appropriate only with fixed fold count, suitable finite moments/positivity, and calibration converging in L2 to a stable finite-variance limit. Cross-fitting removes own-fold training leakage; it does **not** by itself prove these regularity conditions or provide finite-sample independence of the pseudo-outcomes. Different folds share training data. No exact finite-sample coverage or variance unbiasedness is claimed. The minimum training count lets the software run; it does not establish that the fitted calibration is stable.
 
 ## Randomized-mode assumptions users must substantiate
 

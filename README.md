@@ -8,9 +8,9 @@ LLMs are widely used as judges to score open-ended responses. They make it pract
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-475569)](LICENSE)
 
-I built `llmaudit` around a question from my research: **how can we use LLM scores to compare outcomes while keeping human judgment as the reference?** A score difference can reflect differences in quality, comprehension, or correctness, as well as how the judge responds to the text. Human ratings from a probability sample let us estimate the comparison under a specified human rubric.
+I built `llmaudit` to answer a practical question: **when an LLM scores responses in an A/B test or model comparison, does the score difference hold up under human evaluation?** The judge may respond to writing style as well as quality, comprehension, or correctness.
 
-The package combines scores for every response with human ratings from a probability sample. It returns the corrected difference, a confidence interval, and the judge-only result side by side. You can use it for randomized experiments or for comparing two checkpoints on the same prompts. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
+The package combines LLM scores for every response with human ratings from a probability sample. It returns the corrected difference, a confidence interval, and the judge-only result side by side. You can use it for randomized experiments or for comparing two checkpoints on the same prompts. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
 
 ## Where to use it
 
@@ -21,7 +21,7 @@ The package combines scores for every response with human ratings from a probabi
 | Education | Choose tutoring feedback | Correct reasoning in a student's answer. |
 | LLM evaluation | Select between two model versions | Response quality on the same prompts. |
 
-These are intended applications; your rubric defines the outcome and needs substantive validation.
+These are possible uses. In each case, you need to check that the human rubric measures the outcome you care about.
 
 ## See a human-audited experiment
 
@@ -29,7 +29,7 @@ These are intended applications; your rubric defines the outcome and needs subst
 
 In this **synthetic example**, the intervention has zero human-reference effect by construction, while the simulated judge gives its responses an eight-point bonus. The corrected effect is **+1.11 points, with a 95% interval of −0.28 to +2.50**: improvement remains unresolved.
 
-Human-only analysis uses the same 366 sampled ratings. The correction has a narrower interval here, but its point estimate is farther from zero. This draw illustrates arithmetic, not general accuracy, coverage, or annotation savings.
+Human-only analysis uses the same 366 sampled ratings. The correction has a narrower interval here, but its point estimate is farther from zero. This one draw shows the calculation; it cannot establish general accuracy, coverage, or annotation savings.
 
 [Read the short article](docs/articles/randomized-experiments.md) · [Generated report](examples/experiment-report.md)
 
@@ -59,7 +59,7 @@ The audit observes human-minus-judge discrepancies. Weight them by their known s
 
 ### The estimator
 
-The default frozen-score route corrects each response, then compares the randomized groups:
+In the default `frozen_score` mode, correct each response, then compare the randomized groups:
 
 ![Randomized estimator: phi_i = S_i + (R_i/pi_i)(H_i − S_i); tau_hat = mean(phi in group 1) − mean(phi in group 0); SE = sqrt(s_1 squared/n_1 + s_0 squared/n_0). The asymptotic 95% interval is estimate plus or minus 1.96 times SE.](docs/assets/randomized-estimator.png)
 

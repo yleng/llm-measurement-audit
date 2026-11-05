@@ -2,17 +2,15 @@
 
 *Yan Leng · November 2026*
 
-LLMs are widely used as judges to score open-ended responses, from model outputs to customer feedback. They offer a practical way to turn text into scores when human coding at scale would be slow and expensive. Work such as [MT-Bench](https://arxiv.org/abs/2306.05685) also documents why those scores need care: judges can favor particular positions, longer answers, or their own outputs.
+LLMs are widely used as judges to score open-ended responses, from model outputs to customer feedback. Scoring every response by hand would be slow and expensive; an LLM makes it practical to score the full set. [MT-Bench](https://arxiv.org/abs/2306.05685) documents several biases in those scores: judges can favor particular positions, longer answers, or their own outputs.
 
-My interest is in how we use those scores to compare outcomes: across experimental groups, model versions, or system prompts. The question is whether a score difference reflects the quality, comprehension, or correctness we meant to measure. I built `llmaudit` to estimate those comparisons using scores for every response and human ratings from a probability sample. Randomized experiments provide a concrete starting point.
+I want to know whether differences in LLM scores across experimental groups, model versions, or system prompts hold up under human evaluation. Are we measuring quality, comprehension, or correctness—or how the judge responds to the text? I built `llmaudit` to estimate those comparisons using scores for every response and human ratings from a probability sample. Randomized experiments provide a concrete starting point.
 
 A team rewrites a fee notice to make it easier to understand. Participants are randomly assigned to the current or new version, then explain when the fee applies. An LLM scores every answer for comprehension. The new notice comes out ahead.
 
 The team needs to know whether people understand the rule better. Random assignment identifies an effect on the **judge's score**. Whether that score captures better comprehension is a measurement question. The new notice may also change the wording people use, and the judge may reward that wording.
 
-A similar question arises in model evaluation: when a checkpoint earns higher LLM-judge scores, does it also produce better responses under a human rubric?
-
-The same audit calculation supports both comparisons: combine the full set of automated scores with probability-sampled human ratings, then estimate the human-reference difference and its confidence interval. The examples below show the calculation and how I would read the resulting report.
+The same question applies to a checkpoint with higher LLM-judge scores. In both settings, combine the automated scores with probability-sampled human ratings to estimate the difference under the human rubric and its confidence interval.
 
 ## LLM-as-a-judge bias can distort an A/B test
 
@@ -51,9 +49,9 @@ Each answer is independently selected for human review with probability 0.2. Thi
 | Human ratings for the 366 audited answers | −0.85 | −3.00 to +1.30 |
 | Full scores plus sampled human correction | +1.11 | −0.28 to +2.50 |
 
-The judge-only interval resolves a positive effect on judge scores, which the simulation deliberately creates. Both human-reference intervals include zero: improvement remains unresolved. Including zero does not prove equivalence.
+The judge-only interval shows a positive effect on judge scores, as expected from the scoring bonus. Both human-reference intervals include zero: improvement remains unresolved. Including zero does not prove equivalence.
 
-The correction has a narrower interval than human-only analysis in this draw, although its point estimate is farther from the known zero effect. One simulation illustrates the calculation; it establishes neither coverage nor typical superiority or annotation savings. Seeds are fixed without searching for a favorable draw.
+The correction has a narrower interval than human-only analysis in this draw, although its point estimate is farther from the known zero effect. This one simulation shows the calculation. It cannot establish coverage, typical superiority, or annotation savings. Seeds are fixed without searching for a favorable draw.
 
 ## How probability-sampled human ratings correct the comparison
 
@@ -70,7 +68,7 @@ Compare the group averages of these contributions. Under the declared sampling d
 
 Informative scores can improve precision by accounting for outcome variation across the full sample. The human audit then estimates the remaining errors. The gain depends on those residuals; human-only analysis is a useful baseline.
 
-The construction is established generalized-difference / augmented inverse-probability weighting (AIPW), related to [prediction-powered inference (PPI)](https://arxiv.org/abs/2301.09633) and [design-based supervised learning (DSL)](https://naokiegami.com/paper/dsl_ss.pdf). The package implements a local workflow with explicit sampling checks, reports, and interpretation.
+The construction is established generalized-difference / augmented inverse-probability weighting (AIPW), related to [prediction-powered inference (PPI)](https://arxiv.org/abs/2301.09633) and [design-based supervised learning (DSL)](https://naokiegami.com/paper/dsl_ss.pdf). The package checks the declared sampling design and produces a local report with estimates and interpretation.
 
 ## Paired model evaluation: compare checkpoints on the same prompts
 
@@ -89,7 +87,7 @@ The separate eight-pair synthetic fixture gives a judge-only difference of **+0.
 | Education | Choose tutoring feedback | Correct reasoning in an independently scored answer. |
 | LLM evaluation | Select between two model versions | Response quality on paired prompts under a common rubric. |
 
-These are intended uses, not observed deployments. Each needs an appropriate design and a substantively valid human rubric.
+These are possible uses; the examples do not document deployments. Each requires an appropriate design and a human rubric that measures the intended outcome.
 
 ## Run the package
 

@@ -12,19 +12,19 @@ You already have baseline and candidate runs in Inspect. This adapter combines t
 | AI safety evaluation | **Change a refusal policy** | More refusals can raise a judge's safety score while making legitimate requests harder to complete. | A prespecified rubric covering appropriate refusal and useful help. Assess both aspects rather than treating refusal frequency as success. |
 | Model compression & deployment | **Replace a model with a smaller one** | A cheaper model may keep a similar average judge score while losing response quality under the human rubric. | Human-rated quality differences on paired prompts. Compare the interval with a prespecified acceptable quality loss; measure cost and latency separately. |
 
-These are supported comparison settings, not claims of adoption, safety certification, or proven cost savings. A single score resolves only the outcome its rubric defines.
+The adapter supports these comparisons. The examples provide no evidence of adoption, safety certification, or cost savings. Each score measures only the outcome defined by its rubric.
 
 ## See the result
 
 ![Synthetic paired comparison: the judge favors the candidate by +0.50 points; human-reference correction is −0.25 with an interval from −0.86 to +0.36, leaving the gain unresolved.](assets/results.png)
 
-The judge favors the candidate, but the human-reference interval crosses zero. These data do not resolve an improvement. All eight prompt pairs and their ratings are fabricated; this small fixture demonstrates the integration, not reliable small-sample coverage or model-selection performance. [Generated report](example-report.md)
+The judge favors the candidate, but the human-reference interval crosses zero. These data do not resolve an improvement. All eight prompt pairs and their ratings are fabricated. This small fixture shows how to run the integration; it cannot establish reliable small-sample coverage or model-selection performance. [Generated report](example-report.md)
 
 ## How it works
 
 ![Two completed Inspect logs plus a full pair-audit manifest are matched and validated, then converted into a human-reference paired difference and confidence interval.](assets/workflow.png)
 
-The adapter reads the public Inspect log format, matches the same prompts by ID, and joins the sampled human pair ratings. It then uses the paired correction to estimate the human-reference difference. It is a local postprocessing adapter; no scorer registration, model calls, or audit sampling occurs.
+The adapter reads the public Inspect log format, matches the same prompts by ID, and joins the sampled human pair ratings. It then uses the paired correction to estimate the human-reference difference. It processes completed logs locally. It does not register a scorer, call models, or select the audit sample.
 
 ## Try the synthetic example
 
@@ -64,7 +64,7 @@ Provide an audit CSV with exactly these columns and **one row for every prompt p
 | `human_label_0`, `human_label_1` | Both ratings for selected pairs; both blank otherwise. |
 | `audit_probability` | Known positive pair-inclusion probability for every pair. |
 
-Selections must be independent Bernoulli draws with a fixed rule and complete selected returns. Freeze the scorer, rubric, response-generation rules, and audit policy before collecting labels. A shared scorer key cannot establish the same judge/rubric; verify the actual judge settings yourself. Matching logs cannot establish representative IID prompts, independent sampling, construct validity, or absence of shared coder effects.
+Selections must be independent Bernoulli draws with a fixed rule and complete selected returns. Freeze the scorer, rubric, response-generation rules, and audit policy before collecting labels. Verify the judge settings and rubric in both runs; matching scorer keys alone are insufficient. Matching logs cannot establish representative IID prompts, independent sampling, construct validity, or absence of shared coder effects.
 
 The target is the population mean human-reference difference over IID prompts under the specified generation rules. The same prompt appearing on both sides is handled as a pair. This is not a randomized causal effect or conditional uncertainty for a fixed benchmark archive. Fixed-size/adaptive audits, clustered/repeated prompts, or changing grader populations need separate analysis. [Paired method](../../docs/paired.md)
 

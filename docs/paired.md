@@ -1,8 +1,8 @@
 # Paired checkpoint comparisons
 
-Use this mode when both checkpoints answer the same prompts. Each row contains one complete response pair. Checkpoint `0` is the baseline and checkpoint `1` is the candidate; positive differences favor higher candidate scores under your rubric.
+Use this mode when both checkpoints answer the same prompts. Each row contains one complete response pair. Checkpoint `0` is the baseline and checkpoint `1` is the candidate; a positive difference means the candidate scores higher under your rubric.
 
-The target is the **population mean human-reference difference, checkpoint 1 minus checkpoint 0**, for the declared prompt population and fixed checkpoint, generation, and scoring protocols. Both outputs are observed, so this comparison does not require randomized checkpoint assignment. It is not a causal treatment-effect estimate.
+The target is the **population mean human-reference difference, checkpoint 1 minus checkpoint 0**, for the declared prompt population and fixed checkpoint, generation, and scoring protocols. Both outputs are observed, so randomized checkpoint assignment is unnecessary. The estimate describes a quality difference rather than a causal treatment effect.
 
 ## Prepare the audit
 
@@ -42,7 +42,7 @@ Copy [examples/paired_design.json](../examples/paired_design.json). All fields a
 | `mode` | `"frozen_score"` |
 | `alpha` | Finite number in `(0,1)`; `0.05` gives a nominal 95% interval. |
 
-Assignment probabilities and cross-fitting fields belong to the randomized mode and are rejected here. Paired calibration fitting is not implemented. At least two complete pairs and two fully audited pairs are required for arithmetic support; these minimums are not sample-size recommendations.
+Assignment probabilities and cross-fitting fields belong to the randomized mode and are rejected here. Paired calibration fitting is not implemented. At least two complete pairs and two fully audited pairs are required for arithmetic support; these minimums let the calculation run and are not sample-size recommendations.
 
 ## Run and interpret
 
@@ -58,6 +58,6 @@ The JSON report identifies `comparison: "paired"` and `method: "paired_generaliz
 
 The Python API is unchanged: load the CSV into a list of dictionaries, load the paired JSON into a dictionary, and call `from llmaudit import analyze; report = analyze(records, config)`. Input-file hashes are added by the CLI, not by the direct API.
 
-Intervals describe uncertainty across IID prompts and pair-level audit selection. They are asymptotic and can be unreliable with few pairs, few audited pairs, or concentrated weights. A convenient fixed benchmark is not automatically an IID sample from the deployment population. The current interval is not a conditional audit-only interval for that fixed archive. Unique IDs also cannot establish that outputs share prompts or that pairs are independent; those are design assertions the user must substantiate.
+Intervals describe uncertainty across IID prompts and pair-level audit selection. They are asymptotic and can be unreliable with few pairs, few audited pairs, or concentrated weights. A convenient fixed benchmark is not automatically an IID sample from the deployment population. The current interval is not a conditional audit-only interval for that fixed archive. You must also verify that both outputs use the same prompt and that pairs are independent. Unique IDs alone cannot establish either condition.
 
 For equations and finite-variance assumptions, see [the method](method.md#paired-prompt-comparisons). The example is entirely synthetic and establishes arithmetic behavior only.

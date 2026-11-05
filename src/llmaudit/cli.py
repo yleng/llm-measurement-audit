@@ -58,7 +58,7 @@ def markdown(report):
              f"| AI-only score contrast | {ai['estimate']:.6g} | {ai['standard_error']:.6g} |", '',
              f"Asymptotic {100*(1-corrected['alpha']):.6g}% normal interval for the human-reference effect: [{low:.6g}, {high:.6g}].", '',
              '## Interpretation', '', interpretation, '',
-             'Interpret the difference under the stated human rubric. A higher score is an improvement only if that rubric defines higher values as better. Use the interval to judge whether the comparison resolves a practically meaningful difference.', '',
+             'Read the estimate under the stated human rubric: higher scores mean improvement only if the rubric defines them that way. Use the interval to assess whether the data resolve a practically meaningful difference.', '',
              '## Audit coverage', '']
     if paired:
         stats = report['pairs']

@@ -26,7 +26,7 @@ contents=[
 
 A new fee notice may change how people explain a rule. If an LLM rewards the changed writing style, the score contrast combines comprehension with scoring error. This synthetic tutorial uses **existing ppi_py APIs** to estimate the human-reference treatment effect.
 
-Applications include marketing (notice comprehension), enterprise AI (task accuracy), education (conceptual understanding), and LLM evaluation (human-rated quality when independent requests are randomized between models). Same-prompt model comparisons require paired inference rather than this randomized route. Human raters define the outcome; judge scores make the larger sample useful. These are possible applications, not demonstrated deployments.
+Applications include marketing (notice comprehension), enterprise AI (task accuracy), education (conceptual understanding), and LLM evaluation (human-rated quality when independent requests are randomized between models). Same-prompt model comparisons require paired inference rather than this randomized route. The human rubric defines the outcome. Judge scores supply predictions for the larger sample. These are possible applications, not demonstrated deployments.
 
 Install `ppi-python==0.2.3`, `numpy==1.26.4`, and `scipy==1.13.1`. The example generates its data locally and needs no API key.
 
@@ -52,7 +52,7 @@ Delete the unlabeled human outcomes before analysis. They are simulated for cons
 
 The judge-score interval excludes zero, but its target includes the deliberately injected eight-point scoring bonus. Both human-reference intervals include zero, leaving the direction unresolved; they do not prove equivalence. One draw is not a coverage study or evidence of typical superiority or cost savings. Eight hundred labels are an illustrative input, not a budget recommendation.
 
-The validity argument requires independent IID labeled and unlabeled cohorts from the same population/design, frozen predictions and a specified human rubric, aligned labels/predictions, and sufficient moments/sample sizes for the upstream asymptotic intervals. Conditional grouping by randomized arm preserves the arm distributions. These statements do not cover clustering, nonuniform/adaptive labeling, train-on-evaluation leakage, or reuse of labeled cases in `Yhat_unlabeled`.
+Valid intervals require independent IID labeled and unlabeled cohorts from the same population and design, frozen predictions, a specified human rubric, aligned labels and predictions, and sufficient moments and sample sizes for the upstream asymptotic intervals. Conditional grouping by randomized arm preserves the arm distributions. These statements do not cover clustering, nonuniform/adaptive labeling, train-on-evaluation leakage, or reuse of labeled cases in `Yhat_unlabeled`.
 
 Human ratings must measure the outcome the experiment is intended to change. Keep labeled observations out of `Yhat_unlabeled`; this tutorial requires separate IID cohorts.
 
