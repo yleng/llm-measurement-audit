@@ -6,7 +6,7 @@ version: "0.2.0.dev0"
 authors:
   - family-names: Leng
     given-names: Yan
-repository-code: "https://github.com/yleng/llm-measurement-audit-release"
+repository-code: "https://github.com/yleng/llm-measurement-audit"
 license: MIT
 abstract: >-
   Human-audited inference for LLM-as-a-judge evaluations. Combines automated

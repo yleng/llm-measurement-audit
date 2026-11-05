@@ -8,7 +8,7 @@ That matters when we compare two groups or models. A higher average judge score 
 
 I built `llmaudit` to help make these comparisons. It combines LLM scores for every response with human ratings from a probability sample, then reports the corrected difference and its uncertainty alongside the judge-only result.
 
-[![Tests](https://github.com/yleng/llm-measurement-audit-release/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yleng/llm-measurement-audit-release/actions/workflows/ci.yml)
+[![Tests](https://github.com/yleng/llm-measurement-audit/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yleng/llm-measurement-audit/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-475569)](LICENSE)
 
@@ -36,8 +36,8 @@ Human-only analysis uses the same 366 sampled ratings. The correction has a narr
 Python 3.10 or newer. No API key or third-party runtime dependencies for the base package.
 
 ```bash
-git clone https://github.com/yleng/llm-measurement-audit-release.git
-cd llm-measurement-audit-release
+git clone https://github.com/yleng/llm-measurement-audit.git
+cd llm-measurement-audit
 
 PYTHONPATH=src python -m llmaudit \
   --data examples/experiment.csv \
