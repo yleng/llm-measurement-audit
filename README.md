@@ -1,16 +1,16 @@
 # LLM Evaluation with Human Audits
 
-**Human-audited inference for LLM-scored experiments and model comparisons.**
+**Estimate experiment effects and model differences when an LLM scores the outcomes.**
 
-Estimate human-reference treatment effects and paired checkpoint differences using automated scores and probability-sampled human ratings. Get the corrected difference, a confidence interval, and the judge-only result in a local report.
+LLMs are widely used as judges to score open-ended responses. They make it practical to evaluate text at scale, where human coding would be slow and expensive. But a higher judge score can reflect a change in wording, length, or style as well as a change in the outcome you care about.
 
 [![Tests](https://github.com/yleng/llm-measurement-audit-release/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yleng/llm-measurement-audit-release/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-475569)](LICENSE)
 
-An intervention can change writing style; a checkpoint can produce longer answers. If an LLM judge rewards those changes, its score gain can overstate improvement under your human rubric—even with random assignment.
+I built `llmaudit` around a question from my research: **when an experiment changes what people write, how much of the score difference reflects the outcome we meant to measure?** Random assignment identifies the effect on the judge’s score. Estimating the effect on comprehension, correctness, or another human-defined outcome requires a measurement step too.
 
-`llmaudit` uses sampled human ratings to correct errors in that comparison, so you can assess comprehension, correctness, or another specified human outcome.
+The package combines scores for every response with human ratings from a probability sample. It returns the corrected difference, a confidence interval, and the judge-only result side by side. You can use it for randomized experiments or for comparing two checkpoints on the same prompts. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
 
 ## Where to use it
 

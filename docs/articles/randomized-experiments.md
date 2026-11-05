@@ -2,13 +2,17 @@
 
 *Yan Leng · November 2026*
 
+LLMs are widely used as judges to score open-ended responses, from model outputs to customer feedback. They offer a practical way to turn text into scores when human coding at scale would be slow and expensive. Work such as [MT-Bench](https://arxiv.org/abs/2306.05685) also documents why those scores need care: judges can favor particular positions, longer answers, or their own outputs.
+
+My interest is in what happens when we use those scores as experimental outcomes. An intervention may change both what people say and how they say it. If a judge responds to both, a well-randomized experiment can still leave us uncertain about the effect on the human-defined outcome. I built `llmaudit` to make that measurement question easier to examine with a probability sample of human ratings.
+
 A team rewrites a fee notice to make it easier to understand. Participants are randomly assigned to the current or new version, then explain when the fee applies. An LLM scores every answer for comprehension. The new notice comes out ahead.
 
 The team needs to know whether people understand the rule better. Random assignment identifies an effect on the **judge's score**. Whether that score captures better comprehension is a measurement question. The new notice may also change the wording people use, and the judge may reward that wording.
 
 A similar question arises in model evaluation: when a checkpoint earns higher LLM-judge scores, does it also produce better responses under a human rubric?
 
-`llmaudit` addresses both comparisons through **human-audited inference**. It combines automated scores with probability-sampled human ratings to estimate a human-reference difference and its confidence interval.
+The same audit calculation supports both comparisons: combine the full set of automated scores with probability-sampled human ratings, then estimate the human-reference difference and its confidence interval. The examples below show the calculation and how I would read the resulting report.
 
 ## LLM-as-a-judge bias can distort an A/B test
 
