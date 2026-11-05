@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite this repository and version."
+message: "If you use llmaudit in research or an evaluation report, please cite the software and include the version or commit you used."
 title: "LLM Evaluation with Human Audits"
 type: software
 version: "0.2.0.dev0"
@@ -8,3 +8,17 @@ authors:
     given-names: Yan
 repository-code: "https://github.com/yleng/llm-measurement-audit-release"
 license: MIT
+abstract: >-
+  Human-audited inference for LLM-as-a-judge evaluations. Combines automated
+  scores with probability-sampled human ratings to estimate treatment effects
+  in randomized experiments and paired model differences on shared prompts,
+  with confidence intervals and explicit sampling requirements.
+keywords:
+  - LLM-as-a-judge
+  - LLM evaluation
+  - human evaluation
+  - measurement error
+  - randomized experiments
+  - paired model comparison
+  - prediction-powered inference
+  - augmented inverse-probability weighting

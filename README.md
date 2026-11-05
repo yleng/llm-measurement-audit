@@ -2,15 +2,15 @@
 
 **Estimate experiment effects and model differences when an LLM scores the outcomes.**
 
-LLMs are widely used as judges to score open-ended responses. They make it practical to evaluate text at scale, where human coding would be slow and expensive. But a higher judge score can reflect a change in wording, length, or style as well as a change in the outcome you care about.
+Many of us use LLM judges to score model responses, customer feedback, or written answers in experiments. They let us evaluate far more text than we could review by hand. But they also introduce measurement error: a judge may reward a longer or more polished answer even when a human would rate it no better. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
+
+That matters when we compare two groups or models. A higher average judge score may partly reflect the judge’s preferences rather than an improvement in the outcome we care about. Random assignment alone does not remove that scoring error.
+
+I built `llmaudit` to help make these comparisons. It combines LLM scores for every response with human ratings from a probability sample, then reports the corrected difference and its uncertainty alongside the judge-only result.
 
 [![Tests](https://github.com/yleng/llm-measurement-audit-release/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yleng/llm-measurement-audit-release/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-475569)](LICENSE)
-
-I built `llmaudit` to answer a practical question: **when an LLM scores responses in an A/B test or model comparison, does the score difference hold up under human evaluation?** The judge may respond to writing style as well as quality, comprehension, or correctness.
-
-The package combines LLM scores for every response with human ratings from a probability sample. It returns the corrected difference, a confidence interval, and the judge-only result side by side. You can use it for randomized experiments or for comparing two checkpoints on the same prompts. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
 
 ## Where to use it
 
@@ -99,3 +99,19 @@ Intervals target population effects or mean differences. Fixed-size/adaptive aud
 - [PPI tutorial](integrations/ppi_py/README.md): a separate worked example using `ppi_py` APIs and independent labeled/unlabeled cohorts.
 
 Install with `python3 -m pip install .` for the `llmaudit` command and Python API. [Attribution](docs/legal/NOTICE.md) · [MIT license](LICENSE) · [Citation](CITATION.cff)
+
+## Citing this project
+
+If you use `llmaudit` in research or an evaluation report, please cite the software and include the version or commit you used:
+
+```bibtex
+@software{Leng_llmaudit_2026,
+  author = {Leng, Yan},
+  title = {LLM Evaluation with Human Audits},
+  year = {2026},
+  version = {0.2.0.dev0},
+  url = {https://github.com/yleng/llm-measurement-audit-release}
+}
+```
+
+GitHub’s **Cite this repository** menu provides APA and BibTeX formats from [CITATION.cff](CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](docs/method.md).

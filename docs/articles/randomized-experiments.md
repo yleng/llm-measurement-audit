@@ -2,9 +2,11 @@
 
 *Yan Leng · November 2026*
 
-LLMs are widely used as judges to score open-ended responses, from model outputs to customer feedback. Scoring every response by hand would be slow and expensive; an LLM makes it practical to score the full set. [MT-Bench](https://arxiv.org/abs/2306.05685) documents several biases in those scores: judges can favor particular positions, longer answers, or their own outputs.
+Many of us use LLM judges to score model responses, customer feedback, or written answers in experiments. They let us evaluate far more text than we could review by hand. But they also introduce measurement error: a judge may reward a longer or more polished answer even when a human would rate it no better. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
 
-I want to know whether differences in LLM scores across experimental groups, model versions, or system prompts hold up under human evaluation. Are we measuring quality, comprehension, or correctness—or how the judge responds to the text? I built `llmaudit` to estimate those comparisons using scores for every response and human ratings from a probability sample. Randomized experiments provide a concrete starting point.
+That matters when we compare two groups or models. A higher average judge score may partly reflect the judge’s preferences rather than an improvement in the outcome we care about. Random assignment alone does not remove that scoring error.
+
+I built `llmaudit` to help make these comparisons. It combines LLM scores for every response with human ratings from a probability sample, then reports the corrected difference and its uncertainty alongside the judge-only result.
 
 A team rewrites a fee notice to make it easier to understand. Participants are randomly assigned to the current or new version, then explain when the fee applies. An LLM scores every answer for comprehension. The new notice comes out ahead.
 
@@ -105,3 +107,19 @@ For paired comparisons, use `examples/paired.csv`, `examples/paired_design.json`
 Both modes assume IID units or pairs and independent Bernoulli audits with positive known probabilities and complete returns. Randomized mode requires independent Bernoulli assignment with a common known probability; paired audits require both ratings. Clustering, repeated outcomes, shared coder effects, fixed-size/adaptive audits, and inference for a fixed archive require another analysis. The interval concerns the specified human reference; it cannot establish that the rubric measures the intended construct.
 
 [Experiment report](../../examples/experiment-report.md) · [Paired guide](../paired.md) · [Method and assumptions](../method.md) · [Example reproduction](../experiment-example.md)
+
+## Citing this project
+
+If you use `llmaudit` in research or an evaluation report, please cite the software and include the version or commit you used:
+
+```bibtex
+@software{Leng_llmaudit_2026,
+  author = {Leng, Yan},
+  title = {LLM Evaluation with Human Audits},
+  year = {2026},
+  version = {0.2.0.dev0},
+  url = {https://github.com/yleng/llm-measurement-audit-release}
+}
+```
+
+GitHub’s **Cite this repository** menu provides APA and BibTeX formats from [CITATION.cff](../../CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](../method.md).
