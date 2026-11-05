@@ -68,7 +68,7 @@ $$
 $$
 
 $$
-\operatorname{SE}(\widehat{\tau}) = \sqrt{\frac{s_1^2}{n_1}+\frac{s_0^2}{n_0}}
+\mathrm{SE}(\widehat{\tau}) = \sqrt{\frac{s_1^2}{n_1}+\frac{s_0^2}{n_0}}
 $$
 
 - $S_i$ is the judge score; $H_i$ is the human rating.
@@ -94,12 +94,12 @@ $$
 $$
 
 $$
-\operatorname{SE}(\widehat{\Delta}) = \frac{s_{\psi}}{\sqrt{n}}
+\mathrm{SE}(\widehat{\Delta}) = \frac{s_{\psi}}{\sqrt{n}}
 $$
 
 $D_i=S_{i1}-S_{i0}$ is the candidate-minus-baseline judge-score difference; $G_i=H_{i1}-H_{i0}$ is the corresponding human-rating difference. $R_i$ and $\pi_i$ refer to selection of the complete pair. $s_{\psi}$ is the sample standard deviation of corrected pair differences, and $n$ is the number of prompts. Unreviewed pairs contribute $D_i$ directly.
 
-For either comparison, the asymptotic 95% interval is the estimate $\pm\,1.96\times\operatorname{SE}$.
+For either comparison, the asymptotic 95% interval is the estimate $\pm 1.96\times\mathrm{SE}$.
 
 Run the same command with `examples/paired.csv` and `examples/paired_design.json`, using a new output prefix. [Paired input guide](docs/paired.md) · [Paired report](examples/paired-report.md)
 
