@@ -20,6 +20,6 @@ python3 docs/scripts/render_readme_preview.py
 
 Rendering requires matplotlib in your documentation environment; it is not a package runtime dependency. The illustration must use computed results and retain its synthetic-data label. Keep the full generated report available next to the visual summary.
 
-`python3 docs/scripts/render_experiment_example.py` rebuilds the randomized-experiment CSV, report, summary, and article figures. See [reproduction details](docs/experiment-example.md) for the fixed data-generating process and the human-only documentation baseline. The baseline is not an additional CLI output.
+`python3 docs/scripts/render_experiment_example.py` rebuilds the randomized-experiment CSV, report, summary, and article figures. See [reproduction details](../docs/experiment-example.md) for the fixed data-generating process and the human-only documentation baseline. The baseline is not an additional CLI output.
 
 The workflow and equation figures are rebuilt with `python3 docs/scripts/render_audit_workflow.py` and `python3 docs/scripts/render_readme_math.py`. Figure typography uses modest headings and body-sized labels for display inside the README. Release file hashes live in `docs/release/MANIFEST.sha256.json`; paths are relative to the repository root.

@@ -94,8 +94,8 @@ Intervals target population effects or mean differences. Fixed-size/adaptive aud
 ## Guides and integrations
 
 - [Method](docs/method.md): measurement-error correction, variance, and inference scope.
-- [Contributing](CONTRIBUTING.md): tests and rebuilding figures.
+- [Contributing](.github/CONTRIBUTING.md): tests and rebuilding figures.
 - [Inspect adapter](integrations/inspect_ai/README.md): use completed evaluation logs with sampled human pair ratings; optional dependency.
 - [PPI tutorial](integrations/ppi_py/README.md): a separate worked example using `ppi_py` APIs and independent labeled/unlabeled cohorts.
 
-Install with `python3 -m pip install .` for the `llmaudit` command and Python API. [Attribution](NOTICE.md) · [MIT license](LICENSE) · [Citation](CITATION.cff)
+Install with `python3 -m pip install .` for the `llmaudit` command and Python API. [Attribution](docs/legal/NOTICE.md) · [MIT license](LICENSE) · [Citation](CITATION.cff)
