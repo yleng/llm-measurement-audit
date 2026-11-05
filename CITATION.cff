@@ -6,5 +6,5 @@ version: "0.2.0.dev0"
 authors:
   - family-names: Leng
     given-names: Yan
-repository-code: "https://github.com/yleng/llm-measurement-audit"
+repository-code: "https://github.com/yleng/llm-measurement-audit-release"
 license: MIT
