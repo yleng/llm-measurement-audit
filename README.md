@@ -102,7 +102,11 @@ Install with `python3 -m pip install .` for the `llmaudit` command and Python AP
 
 ## Citing this project
 
-If you use `llmaudit` in research or an evaluation report, please cite the software and include the version or commit you used:
+If you use `llmaudit` in research or an evaluation report, please cite:
+
+> Leng, Y. (2026). *LLM Evaluation with Human Audits* (Version 0.2.0.dev0) [Computer software]. [GitHub](https://github.com/yleng/llm-measurement-audit-release).
+
+Use the version you actually ran; if you used an untagged checkout, include its commit hash. BibTeX for the current version:
 
 ```bibtex
 @software{Leng_llmaudit_2026,

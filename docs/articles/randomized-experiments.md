@@ -8,11 +8,15 @@ That matters when we compare two groups or models. A higher average judge score 
 
 I built `llmaudit` to help make these comparisons. It combines LLM scores for every response with human ratings from a probability sample, then reports the corrected difference and its uncertainty alongside the judge-only result.
 
-A team rewrites a fee notice to make it easier to understand. Participants are randomly assigned to the current or new version, then explain when the fee applies. An LLM scores every answer for comprehension. The new notice comes out ahead.
+Consider an A/B test of a fee notice:
 
-The team needs to know whether people understand the rule better. Random assignment identifies an effect on the **judge's score**. Whether that score captures better comprehension is a measurement question. The new notice may also change the wording people use, and the judge may reward that wording.
+1. **The decision:** Should the team replace the current notice with a rewrite intended to improve comprehension?
+2. **The experiment:** Randomly assign participants to the current or new notice, then ask each person to explain when the fee applies.
+3. **The measurement:** Use an LLM to score every answer for comprehension. Suppose the new-notice group receives higher scores.
 
-The same question applies to a checkpoint with higher LLM-judge scores. In both settings, combine the automated scores with probability-sampled human ratings to estimate the difference under the human rubric and its confidence interval.
+Does that score gain mean people understand the rule better? The new notice may also change how participants phrase their answers, and the judge may reward that wording. Random assignment identifies an effect on the **judge's score**. Human ratings are needed to check the comparison against the intended comprehension rubric.
+
+The same concern arises when a checkpoint earns higher LLM-judge scores. In either setting, sampled human ratings let us estimate the difference under the human rubric and its confidence interval.
 
 ## LLM-as-a-judge bias can distort an A/B test
 
@@ -110,7 +114,11 @@ Both modes assume IID units or pairs and independent Bernoulli audits with posit
 
 ## Citing this project
 
-If you use `llmaudit` in research or an evaluation report, please cite the software and include the version or commit you used:
+If you use `llmaudit` in research or an evaluation report, please cite:
+
+> Leng, Y. (2026). *LLM Evaluation with Human Audits* (Version 0.2.0.dev0) [Computer software]. [GitHub](https://github.com/yleng/llm-measurement-audit-release).
+
+Use the version you actually ran; if you used an untagged checkout, include its commit hash. BibTeX for the current version:
 
 ```bibtex
 @software{Leng_llmaudit_2026,
