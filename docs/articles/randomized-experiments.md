@@ -116,18 +116,15 @@ Both modes assume IID units or pairs and independent Bernoulli audits with posit
 
 If you use `llmaudit` in research or an evaluation report, please cite:
 
-> Leng, Y. (2026). *LLM Evaluation with Human Audits* (Version 0.2.0.dev0) [Computer software]. [GitHub](https://github.com/yleng/llm-measurement-audit-release).
-
 Use the version you actually ran; if you used an untagged checkout, include its commit hash. BibTeX for the current version:
 
 ```bibtex
-@software{Leng_llmaudit_2026,
+@software{leng2026llmaudit,
   author = {Leng, Yan},
-  title = {LLM Evaluation with Human Audits},
-  year = {2026},
-  version = {0.2.0.dev0},
-  url = {https://github.com/yleng/llm-measurement-audit-release}
+  title  = {llmaudit: human-audited inference for LLM-scored experiments and model comparisons},
+  year   = {2026},
+  note   = {Version 0.2.0.dev0.}
 }
 ```
 
-GitHub’s **Cite this repository** menu provides APA and BibTeX formats from [CITATION.cff](../../CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](../method.md).
+Machine-readable citation metadata is available in [CITATION.cff](../../CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](../method.md).

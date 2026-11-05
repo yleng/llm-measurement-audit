@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use llmaudit in research or an evaluation report, please cite the software and include the version or commit you used."
-title: "LLM Evaluation with Human Audits"
+title: "llmaudit: human-audited inference for LLM-scored experiments and model comparisons"
 type: software
 version: "0.2.0.dev0"
 authors:
