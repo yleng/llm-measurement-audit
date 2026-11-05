@@ -12,7 +12,7 @@ I built `llmaudit` to help make these comparisons. It combines LLM scores for ev
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-475569)](LICENSE)
 
-## Where to use it
+## Example use cases
 
 | Field | Decision | Human-defined outcome |
 |---|---|---|
@@ -21,17 +21,15 @@ I built `llmaudit` to help make these comparisons. It combines LLM scores for ev
 | Education | Choose tutoring feedback | Correct reasoning in a student's answer. |
 | LLM evaluation | Select between two model versions | Response quality on the same prompts. |
 
-These are possible uses. In each case, you need to check that the human rubric measures the outcome you care about.
-
-## See a human-audited experiment
+## Method intuition
 
 ![Synthetic randomized A/B test: judge-only effect +7.55 points, human-only −0.85, corrected +1.11. Both human-reference intervals include zero.](docs/assets/experiment-results.png)
 
 In this **synthetic example**, the intervention has zero human-reference effect by construction, while the simulated judge gives its responses an eight-point bonus. The corrected effect is **+1.11 points, with a 95% interval of −0.28 to +2.50**: improvement remains unresolved.
 
-Human-only analysis uses the same 366 sampled ratings. The correction has a narrower interval here, but its point estimate is farther from zero. This one draw shows the calculation; it cannot establish general accuracy, coverage, or annotation savings.
+Human-only analysis uses the same 366 sampled ratings. The correction has a narrower interval here, but its point estimate is farther from zero.
 
-[Read the short article](docs/articles/randomized-experiments.md) · [Generated report](examples/experiment-report.md)
+[Read the short article](docs/articles/randomized-experiments.md) · [Report](examples/experiment-report.md)
 
 ## Try it
 
@@ -61,25 +59,47 @@ The audit observes human-minus-judge discrepancies. Weight them by their known s
 
 In the default `frozen_score` mode, correct each response, then compare the randomized groups:
 
-![Randomized estimator: phi_i = S_i + (R_i/pi_i)(H_i − S_i); tau_hat = mean(phi in group 1) − mean(phi in group 0); SE = sqrt(s_1 squared/n_1 + s_0 squared/n_0). The asymptotic 95% interval is estimate plus or minus 1.96 times SE.](docs/assets/randomized-estimator.png)
+$$
+\phi_i = S_i + \frac{R_i}{\pi_i}(H_i-S_i)
+$$
 
-- `S` is the judge score; `H` is the human rating.
-- `R` is 1 for a reviewed response and 0 otherwise; `pi` is its known audit probability.
-- `phi` is the corrected contribution. Within each group, `s²` is its sample variance and `n` is the group size.
+$$
+\widehat{\tau} = \overline{\phi}_1-\overline{\phi}_0
+$$
+
+$$
+\operatorname{SE}(\widehat{\tau}) = \sqrt{\frac{s_1^2}{n_1}+\frac{s_0^2}{n_0}}
+$$
+
+- $S_i$ is the judge score; $H_i$ is the human rating.
+- $R_i$ is 1 for a reviewed response and 0 otherwise; $\pi_i$ is its known audit probability.
+- $\phi_i$ is the corrected contribution. In group $a$, $s_a^2$ is its sample variance and $n_a$ is the group size.
 
 Unreviewed responses contribute their judge score directly; missing human ratings never enter the calculation. The standard error accounts for population outcome variability and audit uncertainty under the stated design.
 
-The estimator uses established generalized-difference / augmented inverse-probability weighting (AIPW), related to prediction-powered inference (PPI) and design-based supervised learning (DSL). Informative scores can improve precision by leaving smaller discrepancies to estimate. A gain is not guaranteed. [Equations and references](docs/method.md)
+The estimator uses established generalized-difference / augmented inverse-probability weighting (AIPW), related to prediction-powered inference (PPI) and design-based supervised learning (DSL). Informative scores can improve precision by leaving smaller discrepancies to estimate. [Equations and references](docs/method.md)
 
 ## Paired model evaluation and checkpoint comparisons
 
-Evaluate both versions on the **same prompts** and human-rate both responses in each sampled pair. Paired inference preserves within-prompt dependence. Its target is a population mean quality difference, rather than a randomized treatment effect.
+Evaluate both versions on the **same prompts** and human-rate both responses in each sampled pair. Paired inference preserves within-prompt dependence. It estimates the population mean quality difference across prompts.
 
 Apply the correction to **within-prompt differences**, then average across prompts:
 
-![Paired estimator: psi_i = D_i + (R_i/pi_i)(G_i − D_i); Delta_hat = mean(psi); SE = sample standard deviation of psi divided by sqrt(n). The asymptotic 95% interval is estimate plus or minus 1.96 times SE.](docs/assets/paired-estimator.png)
+$$
+\psi_i = D_i + \frac{R_i}{\pi_i}(G_i-D_i)
+$$
 
-`D` is the candidate-minus-baseline judge-score difference; `G` is the corresponding human-rating difference. `R` and `pi` refer to selection of the complete pair. `s_psi` is the sample standard deviation of corrected pair differences, and `n` is the number of prompts. Unreviewed pairs contribute `D` directly.
+$$
+\widehat{\Delta} = \frac{1}{n}\sum_{i=1}^{n}\psi_i
+$$
+
+$$
+\operatorname{SE}(\widehat{\Delta}) = \frac{s_{\psi}}{\sqrt{n}}
+$$
+
+$D_i=S_{i1}-S_{i0}$ is the candidate-minus-baseline judge-score difference; $G_i=H_{i1}-H_{i0}$ is the corresponding human-rating difference. $R_i$ and $\pi_i$ refer to selection of the complete pair. $s_{\psi}$ is the sample standard deviation of corrected pair differences, and $n$ is the number of prompts. Unreviewed pairs contribute $D_i$ directly.
+
+For either comparison, the asymptotic 95% interval is the estimate $\pm\,1.96\times\operatorname{SE}$.
 
 Run the same command with `examples/paired.csv` and `examples/paired_design.json`, using a new output prefix. [Paired input guide](docs/paired.md) · [Paired report](examples/paired-report.md)
 
@@ -104,8 +124,6 @@ Install with `python3 -m pip install .` for the `llmaudit` command and Python AP
 
 If you use `llmaudit` in research or an evaluation report, please cite:
 
-Use the version you actually ran; if you used an untagged checkout, include its commit hash. BibTeX for the current version:
-
 ```bibtex
 @software{leng2026llmaudit,
   author = {Leng, Yan},
@@ -115,4 +133,4 @@ Use the version you actually ran; if you used an untagged checkout, include its 
 }
 ```
 
-Machine-readable citation metadata is available in [CITATION.cff](CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](docs/method.md).
+Use the version you ran, or include the commit hash for an untagged checkout. Machine-readable citation metadata is available in [CITATION.cff](CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](docs/method.md).

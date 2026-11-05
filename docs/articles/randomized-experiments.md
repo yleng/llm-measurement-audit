@@ -57,7 +57,7 @@ Each answer is independently selected for human review with probability 0.2. Thi
 
 The judge-only interval shows a positive effect on judge scores, as expected from the scoring bonus. Both human-reference intervals include zero: improvement remains unresolved. Including zero does not prove equivalence.
 
-The correction has a narrower interval than human-only analysis in this draw, although its point estimate is farther from the known zero effect. This one simulation shows the calculation. It cannot establish coverage, typical superiority, or annotation savings. Seeds are fixed without searching for a favorable draw.
+The correction has a narrower interval than human-only analysis in this draw, although its point estimate is farther from the known zero effect. Seeds are fixed without searching for a favorable draw.
 
 ## How probability-sampled human ratings correct the comparison
 
@@ -93,8 +93,6 @@ The separate eight-pair synthetic fixture gives a judge-only difference of **+0.
 | Education | Choose tutoring feedback | Correct reasoning in an independently scored answer. |
 | LLM evaluation | Select between two model versions | Response quality on paired prompts under a common rubric. |
 
-These are possible uses; the examples do not document deployments. Each requires an appropriate design and a human rubric that measures the intended outcome.
-
 ## Run the package
 
 With Python 3.10 or newer, from the repository root:
@@ -116,8 +114,6 @@ Both modes assume IID units or pairs and independent Bernoulli audits with posit
 
 If you use `llmaudit` in research or an evaluation report, please cite:
 
-Use the version you actually ran; if you used an untagged checkout, include its commit hash. BibTeX for the current version:
-
 ```bibtex
 @software{leng2026llmaudit,
   author = {Leng, Yan},
@@ -127,4 +123,4 @@ Use the version you actually ran; if you used an untagged checkout, include its 
 }
 ```
 
-Machine-readable citation metadata is available in [CITATION.cff](../../CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](../method.md).
+Use the version you ran, or include the commit hash for an untagged checkout. Machine-readable citation metadata is available in [CITATION.cff](../../CITATION.cff). This citation is for the software; references for the underlying estimators are in the [method guide](../method.md).

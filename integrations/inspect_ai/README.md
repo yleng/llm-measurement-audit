@@ -12,13 +12,11 @@ You already have baseline and candidate runs in Inspect. This adapter combines t
 | AI safety evaluation | **Change a refusal policy** | More refusals can raise a judge's safety score while making legitimate requests harder to complete. | A prespecified rubric covering appropriate refusal and useful help. Assess both aspects rather than treating refusal frequency as success. |
 | Model compression & deployment | **Replace a model with a smaller one** | A cheaper model may keep a similar average judge score while losing response quality under the human rubric. | Human-rated quality differences on paired prompts. Compare the interval with a prespecified acceptable quality loss; measure cost and latency separately. |
 
-The adapter supports these comparisons. The examples provide no evidence of adoption, safety certification, or cost savings. Each score measures only the outcome defined by its rubric.
-
 ## See the result
 
 ![Synthetic paired comparison: the judge favors the candidate by +0.50 points; human-reference correction is −0.25 with an interval from −0.86 to +0.36, leaving the gain unresolved.](assets/results.png)
 
-The judge favors the candidate, but the human-reference interval crosses zero. These data do not resolve an improvement. All eight prompt pairs and their ratings are fabricated. This small fixture shows how to run the integration; it cannot establish reliable small-sample coverage or model-selection performance. [Generated report](example-report.md)
+The judge favors the candidate, but the human-reference interval crosses zero. These data do not resolve an improvement. All eight prompt pairs and their ratings are fabricated. [Report](example-report.md)
 
 ## How it works
 
