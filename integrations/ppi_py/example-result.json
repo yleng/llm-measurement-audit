@@ -1,0 +1,31 @@
+{
+  "synthetic": true,
+  "population_human_effect": 0,
+  "injected_score_bonus": 8,
+  "labeled_units": 800,
+  "unlabeled_units": 4000,
+  "alpha": 0.05,
+  "lam": 1,
+  "contrast_interval": "Bonferroni combination of armwise asymptotic intervals",
+  "ppi": {
+    "estimate": 0.4648451952886319,
+    "confidence_interval": [
+      -0.7712375065317119,
+      1.7009278971089756
+    ]
+  },
+  "human_only": {
+    "estimate": -0.7253381946409689,
+    "confidence_interval": [
+      -2.8542186652716808,
+      1.403542275989743
+    ]
+  },
+  "judge_only": {
+    "estimate": 8.080814198120983,
+    "confidence_interval": [
+      7.495429491163924,
+      8.666198905078042
+    ]
+  }
+}

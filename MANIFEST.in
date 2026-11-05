@@ -1,0 +1,11 @@
+include NOTICE.md
+include docs/release/MANIFEST.sha256.json
+recursive-include docs *.md *.png *.svg
+recursive-include examples *.csv *.json *.md
+recursive-include docs/scripts *.py
+recursive-include tests *.py
+recursive-include LICENSES *.txt
+include LICENSE
+include CITATION.cff CONTRIBUTING.md .gitignore
+recursive-include .github/workflows *.yml
+recursive-include integrations *.md *.py *.json *.csv *.txt *.ipynb *.png *.svg

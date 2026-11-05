@@ -1,0 +1,58 @@
+{
+  "ai_only": {
+    "alpha": 0.05,
+    "confidence_interval": [
+      0.5,
+      0.5
+    ],
+    "estimate": 0.5,
+    "standard_error": 0.0
+  },
+  "comparison": "paired",
+  "corrected": {
+    "alpha": 0.05,
+    "confidence_interval": [
+      -0.8642362201753618,
+      0.36423622017536184
+    ],
+    "estimate": -0.25,
+    "standard_error": 0.31339158526400435
+  },
+  "design": {
+    "alpha": 0.05,
+    "audit": "independent_bernoulli",
+    "audit_policy_frozen": true,
+    "comparison": "paired",
+    "complete_audit_returns": true,
+    "human_reference": "Fabricated 0-4 response-quality rubric",
+    "mode": "frozen_score",
+    "outcome_units": "points",
+    "reference_frozen": true,
+    "score_protocol": "synthetic-paired-v1",
+    "scorer_frozen": true,
+    "units": "iid_prompts"
+  },
+  "estimand": "population mean human-reference difference (checkpoint 1 minus checkpoint 0)",
+  "method": "paired_generalized_difference",
+  "mode": "frozen_score",
+  "pairs": {
+    "audit_weight_ess": 4.0,
+    "audited": 4,
+    "expected_audited": 4.0,
+    "max_audit_weight": 2.0,
+    "min_audit_probability": 0.5,
+    "units": 8
+  },
+  "provenance": {
+    "design_sha256": "c8d52401c1fa0f1ff42b9dca13bc7ef02091f44deb7544c4ce5a5c4cb0ff849a",
+    "input_sha256": "46831d5721deed3e09c9ad246c3fef4d86804202cb3706740f98c4bcd844222d",
+    "package_version": "0.2.0.dev0"
+  },
+  "schema_version": "0.2",
+  "warnings": [
+    "Design declarations are user assertions; the CSV does not prove shared prompts, IID pairs, sampling, or rubric validity.",
+    "Intervals are asymptotic IID prompt-population mean-difference intervals; fixed-archive conditional coverage is unsupported.",
+    "Small prompt sample or pair audit count; normal intervals may be unreliable.",
+    "Observed zero AI-only difference variance does not establish population certainty; normal inference can be degenerate."
+  ]
+}

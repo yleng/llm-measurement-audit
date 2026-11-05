@@ -1,0 +1,18 @@
+{
+  "units": "iid",
+  "assignment": "bernoulli_randomized",
+  "assignment_probability": 0.5,
+  "audit": "independent_bernoulli",
+  "audit_policy_frozen": true,
+  "scorer_frozen": true,
+  "reference_frozen": true,
+  "complete_audit_returns": true,
+  "score_protocol": "synthetic-v1",
+  "human_reference": "Synthetic arithmetic rubric, fabricated outcomes",
+  "outcome_units": "points",
+  "mode": "frozen_score",
+  "alpha": 0.05,
+  "folds": 2,
+  "fold_seed": "before-labels",
+  "ridge": 1.0
+}

@@ -1,0 +1,43 @@
+{
+  "synthetic": true,
+  "units": 2000,
+  "audit_probability": 0.2,
+  "audited": 366,
+  "seeds": {
+    "assignment": 401,
+    "outcome": 402,
+    "noise": 403,
+    "audit": 404
+  },
+  "population_effect": 0,
+  "injected_arm_score_bonus": 8,
+  "human_noise_sd": 10,
+  "judge_noise_sd": 3,
+  "full_frame_human_difference": -0.4432160711680595,
+  "human_only": {
+    "estimate": -0.8512472540678999,
+    "standard_error": 1.0960551982558098,
+    "confidence_interval": [
+      -2.999475967717195,
+      1.2969814595813953
+    ]
+  },
+  "ai_only": {
+    "alpha": 0.05,
+    "confidence_interval": [
+      6.620928653450649,
+      8.46952298961365
+    ],
+    "estimate": 7.545225821532149,
+    "standard_error": 0.4715888533525304
+  },
+  "corrected": {
+    "alpha": 0.05,
+    "confidence_interval": [
+      -0.2803740681827074,
+      2.5038823548215117
+    ],
+    "estimate": 1.111754143319402,
+    "standard_error": 0.7102825472728272
+  }
+}

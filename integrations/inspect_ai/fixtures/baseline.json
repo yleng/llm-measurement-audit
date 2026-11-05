@@ -1,0 +1,246 @@
+{
+  "version": 2,
+  "status": "success",
+  "eval": {
+    "eval_id": "i8nbf9paqbaVFFgmMQ3E7v",
+    "run_id": "",
+    "created": "2026-11-04T00:00:00+00:00",
+    "task": "synthetic-audit-fixture",
+    "task_id": "",
+    "task_version": 0,
+    "task_attribs": {},
+    "task_args": {},
+    "task_args_passed": {},
+    "solver_args_passed": {},
+    "dataset": {
+      "name": "synthetic-paired",
+      "samples": 8,
+      "sample_ids": [
+        "prompt-001",
+        "prompt-002",
+        "prompt-003",
+        "prompt-004",
+        "prompt-005",
+        "prompt-006",
+        "prompt-007",
+        "prompt-008"
+      ]
+    },
+    "model": "mockllm/baseline",
+    "model_generate_config": {},
+    "model_args": {},
+    "config": {
+      "epochs": 1
+    },
+    "packages": {}
+  },
+  "plan": {
+    "name": "plan",
+    "steps": [],
+    "config": {}
+  },
+  "stats": {
+    "started_at": "",
+    "completed_at": "",
+    "model_usage": {},
+    "role_usage": {},
+    "connection_limit_history": []
+  },
+  "invalidated": false,
+  "tags": [],
+  "metadata": {},
+  "samples": [
+    {
+      "id": "prompt-001",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-001",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 1.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-002",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-002",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 1.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-003",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-003",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 2.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-004",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-004",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 2.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-005",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-005",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 3.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-006",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-006",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 3.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-007",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-007",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 2.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    },
+    {
+      "id": "prompt-008",
+      "epoch": 1,
+      "input": "Fabricated prompt prompt-008",
+      "target": "Fabricated quality rubric",
+      "messages": [],
+      "output": {
+        "model": "",
+        "choices": [],
+        "completion": ""
+      },
+      "scores": {
+        "judge": {
+          "value": 2.0,
+          "history": []
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [],
+      "model_usage": {},
+      "role_usage": {},
+      "attachments": {}
+    }
+  ]
+}

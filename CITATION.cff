@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this repository and version."
+title: "LLM Evaluation with Human Audits"
+type: software
+version: "0.2.0.dev0"
+authors:
+  - family-names: Leng
+    given-names: Yan
+repository-code: "https://github.com/yleng/llm-measurement-audit"
+license: MIT

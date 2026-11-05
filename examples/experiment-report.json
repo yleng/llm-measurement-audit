@@ -1,0 +1,69 @@
+{
+  "ai_only": {
+    "alpha": 0.05,
+    "confidence_interval": [
+      6.620928653450649,
+      8.46952298961365
+    ],
+    "estimate": 7.545225821532149,
+    "standard_error": 0.4715888533525304
+  },
+  "arms": {
+    "0": {
+      "audit_weight_ess": 200.0,
+      "audited": 200,
+      "expected_audited": 207.20000000000002,
+      "max_audit_weight": 5.0,
+      "min_audit_probability": 0.2,
+      "units": 1036
+    },
+    "1": {
+      "audit_weight_ess": 166.0,
+      "audited": 166,
+      "expected_audited": 192.8,
+      "max_audit_weight": 5.0,
+      "min_audit_probability": 0.2,
+      "units": 964
+    }
+  },
+  "corrected": {
+    "alpha": 0.05,
+    "confidence_interval": [
+      -0.2803740681827074,
+      2.5038823548215117
+    ],
+    "estimate": 1.111754143319402,
+    "standard_error": 0.7102825472728272
+  },
+  "design": {
+    "alpha": 0.05,
+    "assignment": "bernoulli_randomized",
+    "assignment_probability": 0.5,
+    "audit": "independent_bernoulli",
+    "audit_policy_frozen": true,
+    "complete_audit_returns": true,
+    "fold_seed": "fixed-before-labels",
+    "folds": 2,
+    "human_reference": "Synthetic comprehension points; fabricated labels and scores",
+    "mode": "frozen_score",
+    "outcome_units": "illustrative points",
+    "reference_frozen": true,
+    "ridge": 1.0,
+    "score_protocol": "synthetic-experiment-v1",
+    "scorer_frozen": true,
+    "units": "iid"
+  },
+  "estimand": "superpopulation human-reference ATE (arm 1 minus arm 0)",
+  "method": "generalized_difference",
+  "mode": "frozen_score",
+  "provenance": {
+    "design_sha256": "6563414ec5bf93570b66a62ee3a64f09de2b222bbcd4351273b68d60fd0ddca1",
+    "input_sha256": "e239235265464013686e5769ebf994f27796da170fc7ac52fba2886fd3574d83",
+    "package_version": "0.2.0.dev0"
+  },
+  "schema_version": "0.1",
+  "warnings": [
+    "Design declarations are user assertions; the CSV does not prove randomization, sampling, or rubric validity.",
+    "Intervals are asymptotic IID superpopulation ATE intervals; fixed-archive conditional coverage is unsupported."
+  ]
+}

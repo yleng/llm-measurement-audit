@@ -1,0 +1,9 @@
+pair_id,audited,human_label_0,human_label_1,audit_probability
+prompt-001,1,1,1,0.5
+prompt-002,0,,,0.5
+prompt-003,1,2,1.5,0.5
+prompt-004,0,,,0.5
+prompt-005,1,3,3,0.5
+prompt-006,0,,,0.5
+prompt-007,1,2,1.5,0.5
+prompt-008,0,,,0.5

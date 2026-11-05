@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llmaudit"
+version = "0.2.0.dev0"
+description = "Human-reference audit reports for randomized experiments and paired model comparisons"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Yan Leng"}]
+dependencies = []
+classifiers = ["Programming Language :: Python :: 3"]
+
+[project.scripts]
+llmaudit = "llmaudit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.optional-dependencies]
+inspect = ["inspect-ai==0.3.287; python_version >= '3.11'"]

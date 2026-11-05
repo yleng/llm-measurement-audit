@@ -1,0 +1,14 @@
+{
+  "comparison": "paired",
+  "units": "iid_prompts",
+  "audit": "independent_bernoulli",
+  "audit_policy_frozen": true,
+  "scorer_frozen": true,
+  "reference_frozen": true,
+  "complete_audit_returns": true,
+  "score_protocol": "synthetic-paired-v1",
+  "human_reference": "Fabricated 0-4 response-quality rubric",
+  "outcome_units": "points",
+  "mode": "frozen_score",
+  "alpha": 0.05
+}

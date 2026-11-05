@@ -1,0 +1,51 @@
+name: tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      matrix:
+        python: ['3.10', '3.13']
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      VECLIB_MAXIMUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --no-deps .
+      - run: python -m unittest discover -s tests -q
+      - run: mkdir -p local_reports
+      - run: python -m llmaudit --data examples/synthetic.csv --design examples/design.json --output local_reports/example
+      - run: python -m llmaudit --data examples/paired.csv --design examples/paired_design.json --output local_reports/paired
+  integrations:
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      VECLIB_MAXIMUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+      NUMBA_NUM_THREADS: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install '.[inspect]' -r integrations/ppi_py/requirements.txt
+      - run: PYTHONPATH=src python -m unittest discover -s integrations/inspect_ai -q
+      - run: python -m unittest discover -s integrations/ppi_py -q
+      - run: python docs/scripts/build_ppi_notebook.py
