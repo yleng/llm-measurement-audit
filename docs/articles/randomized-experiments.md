@@ -4,7 +4,7 @@
 
 LLMs are widely used as judges to score open-ended responses, from model outputs to customer feedback. They offer a practical way to turn text into scores when human coding at scale would be slow and expensive. Work such as [MT-Bench](https://arxiv.org/abs/2306.05685) also documents why those scores need care: judges can favor particular positions, longer answers, or their own outputs.
 
-My interest is in what happens when we use those scores as experimental outcomes. An intervention may change both what people say and how they say it. If a judge responds to both, a well-randomized experiment can still leave us uncertain about the effect on the human-defined outcome. I built `llmaudit` to make that measurement question easier to examine with a probability sample of human ratings.
+My interest is in how we use those scores to compare outcomes: across experimental groups, model versions, or system prompts. The question is whether a score difference reflects the quality, comprehension, or correctness we meant to measure. I built `llmaudit` to estimate those comparisons using scores for every response and human ratings from a probability sample. Randomized experiments provide a concrete starting point.
 
 A team rewrites a fee notice to make it easier to understand. Participants are randomly assigned to the current or new version, then explain when the fee applies. An LLM scores every answer for comprehension. The new notice comes out ahead.
 

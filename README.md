@@ -8,7 +8,7 @@ LLMs are widely used as judges to score open-ended responses. They make it pract
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-475569)](LICENSE)
 
-I built `llmaudit` around a question from my research: **when an experiment changes what people write, how much of the score difference reflects the outcome we meant to measure?** Random assignment identifies the effect on the judge’s score. Estimating the effect on comprehension, correctness, or another human-defined outcome requires a measurement step too.
+I built `llmaudit` around a question from my research: **how can we use LLM scores to compare outcomes while keeping human judgment as the reference?** A score difference can reflect differences in quality, comprehension, or correctness, as well as how the judge responds to the text. Human ratings from a probability sample let us estimate the comparison under a specified human rubric.
 
 The package combines scores for every response with human ratings from a probability sample. It returns the corrected difference, a confidence interval, and the judge-only result side by side. You can use it for randomized experiments or for comparing two checkpoints on the same prompts. [Background on LLM judges and their biases](https://arxiv.org/abs/2306.05685).
 
